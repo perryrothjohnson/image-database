@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # refs:
 # https://stackoverflow.com/questions/45180023/wget-curl-binaries-onto-openshift-before-dependencies-installation
 # https://docs.openshift.com/online/dev_guide/builds/build_inputs.html#using-external-artifacts
