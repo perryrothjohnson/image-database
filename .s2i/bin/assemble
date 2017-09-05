@@ -20,11 +20,19 @@ rc=$?
 
 if [ $rc -eq 0 ]; then
     echo "after successful assembling"
-    
-    # get ImageMagick and install it
+
+    # install ImageMagick
     wget https://www.imagemagick.org/download/ImageMagick.tar.gz
     tar -xvzf ImageMagick.tar.gz
     cd ImageMagick-7.0.7-0
+    ./configure --prefix=$HOME/vendor/
+    make
+    make install
+
+    # install Ghostscript
+    wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs921/ghostscript-9.21-linux-x86_64.tgz
+    tar -xvzf ghostscript-9.21-linux-x86_64.tgz
+    cd ghostscript-9.21-linux-x86_64
     ./configure --prefix=$HOME/vendor/
     make
     make install
