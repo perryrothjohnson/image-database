@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # if there is an error, abort this shell script
 set -eo pipefail
