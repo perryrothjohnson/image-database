@@ -7,17 +7,29 @@
 # http://petereisentraut.blogspot.com/2010/11/pipefail.html
 # https://stackoverflow.com/questions/30080713/how-do-i-compile-and-install-the-source-code-on-openshift
 # https://unix.stackexchange.com/questions/42567/how-to-install-program-locally-without-sudo-privileges
+# https://docs.openshift.com/online/using_images/s2i_images/customizing_s2i_images.html
 
 # if there is an error, abort this shell script
 set -eo pipefail
 
-# get ImageMagick and install it
-wget https://www.imagemagick.org/download/ImageMagick.tar.gz
-tar -xvzf ImageMagick.tar.gz
-cd ImageMagick-7.0.7-0
-./configure --prefix=$HOME/vendor/
-make
-make install
+echo "before assembling"
 
 # run the original assemble script for the PHP image
 /usr/libexec/s2i/assemble
+rc=$?
+
+if [ $rc -eq 0 ]; then
+    echo "after successful assembling"
+    
+    # get ImageMagick and install it
+    wget https://www.imagemagick.org/download/ImageMagick.tar.gz
+    tar -xvzf ImageMagick.tar.gz
+    cd ImageMagick-7.0.7-0
+    ./configure --prefix=$HOME/vendor/
+    make
+    make install
+else
+    echo "after failed assembling"
+fi
+
+exit $rc
