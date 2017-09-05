@@ -22,17 +22,43 @@ if [ $rc -eq 0 ]; then
     echo "after successful assembling"
 
     # install ImageMagick
+    echo "--> installing ImageMagick..."
     wget https://www.imagemagick.org/download/ImageMagick.tar.gz
-    tar -xvzf ImageMagick.tar.gz
+    tar -xzf ImageMagick.tar.gz
     cd ImageMagick-7.0.7-0
     ./configure --prefix=$HOME/vendor/
     make
     make install
 
     # install Ghostscript
-    wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs921/ghostscript-9.21-linux-x86_64.tgz
-    tar -xvzf ghostscript-9.21-linux-x86_64.tgz
-    cd ghostscript-9.21-linux-x86_64
+    echo "--> installing Ghostscript..."
+    wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs921/ghostscript-9.21.tar.gz
+    tar -xzf ghostscript-9.21.tar.gz
+    cd ghostscript-9.21
+    ./configure --prefix=$HOME/vendor/
+    make
+    make install
+
+    # install FFmpeg
+    echo "--> installing FFmpeg..."
+    wget http://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz
+    tar -xf ffmpeg-release-64bit-static.tar.xz
+    cd ffmpeg-3.3.3-64bit-static
+    cp ffmpeg $HOME/vendor/bin
+
+    # install ExifTool
+    echo "--> installing ExifTool..."
+    wget http://www.sno.phy.queensu.ca/~phil/exiftool/Image-ExifTool-10.61.tar.gz
+    tar -xzf Image-ExifTool-10.61.tar.gz
+    cd Image-ExifTool-10.61
+    cp exiftool $HOME/vendor/bin
+    cp -R lib/* $HOME/vendor/lib
+
+    # install PDFtotext
+    echo "--> installing PDFtotext..."
+    wget https://poppler.freedesktop.org/poppler-0.59.0.tar.xz
+    tar -xf poppler-0.59.0.tar.xz
+    cd poppler-0.59.0
     ./configure --prefix=$HOME/vendor/
     make
     make install
