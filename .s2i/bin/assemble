@@ -53,15 +53,6 @@ if [ $rc -eq 0 ]; then
     cd Image-ExifTool-10.61
     cp exiftool $HOME/vendor/bin
     cp -R lib/* $HOME/vendor/lib
-
-    # install PDFtotext
-    echo "--> installing PDFtotext..."
-    wget https://poppler.freedesktop.org/poppler-0.59.0.tar.xz
-    tar -xf poppler-0.59.0.tar.xz
-    cd poppler-0.59.0
-    ./configure --prefix=$HOME/vendor/
-    make
-    make install
 else
     echo "after failed assembling"
 fi
