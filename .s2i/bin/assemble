@@ -9,9 +9,13 @@
 # if there is an error, abort this shell script
 set -eo pipefail
 
-# get ImageMagick and unzip it
+# get ImageMagick and install it
 wget https://www.imagemagick.org/download/ImageMagick.tar.gz
 tar -xvzf ImageMagick.tar.gz
+cd ImageMagick-7.0.7-0
+./configure
+make
+sudo make install
 
 # run the original assemble script
 /usr/libexec/s2i/assemble
