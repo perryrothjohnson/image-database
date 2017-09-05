@@ -15,7 +15,7 @@ tar -xvzf ImageMagick.tar.gz
 cd ImageMagick-7.0.7-0
 ./configure
 make
-sudo make install
+make install
 
 # run the original assemble script
 /usr/libexec/s2i/assemble
