@@ -1,4 +1,1 @@
-SecFilterEngine Off
-SecFilterScanPOST Off
 php_value memory_limit 200M
-php_value short_open_tag Off
