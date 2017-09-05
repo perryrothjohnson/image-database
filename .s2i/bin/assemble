@@ -5,6 +5,8 @@
 # https://docs.openshift.com/online/dev_guide/builds/build_inputs.html#using-external-artifacts
 # http://www.imagemagick.org/script/install-source.php
 # http://petereisentraut.blogspot.com/2010/11/pipefail.html
+# https://stackoverflow.com/questions/30080713/how-do-i-compile-and-install-the-source-code-on-openshift
+# https://unix.stackexchange.com/questions/42567/how-to-install-program-locally-without-sudo-privileges
 
 # if there is an error, abort this shell script
 set -eo pipefail
@@ -13,9 +15,9 @@ set -eo pipefail
 wget https://www.imagemagick.org/download/ImageMagick.tar.gz
 tar -xvzf ImageMagick.tar.gz
 cd ImageMagick-7.0.7-0
-./configure
+./configure --prefix=$HOME/vendor/
 make
 make install
 
 # run the original assemble script
-/usr/libexec/s2i/assemble
+# /usr/libexec/s2i/assemble
