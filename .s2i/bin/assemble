@@ -19,5 +19,5 @@ cd ImageMagick-7.0.7-0
 make
 make install
 
-# run the original assemble script
-# /usr/libexec/s2i/assemble
+# run the original assemble script for the PHP image
+/usr/libexec/s2i/assemble
