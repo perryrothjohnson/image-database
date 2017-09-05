@@ -1,15 +1,17 @@
 #!/bin/sh
+# Downloads dependencies needed for ResourceSpace
 # refs:
 # https://stackoverflow.com/questions/45180023/wget-curl-binaries-onto-openshift-before-dependencies-installation
 # https://docs.openshift.com/online/dev_guide/builds/build_inputs.html#using-external-artifacts
-# http://www.imagemagick.org/script/download.php
+# http://www.imagemagick.org/script/install-source.php
 # http://petereisentraut.blogspot.com/2010/11/pipefail.html
 
 # if there is an error, abort this shell script
 set -eo pipefail
 
-# get ImageMagick
-wget https://www.imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-7.0.7-0.x86_64.rpm
-wget https://www.imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-libs-7.0.7-0.x86_64.rpm
+# get ImageMagick and unzip it
+wget https://www.imagemagick.org/download/ImageMagick.tar.gz
+tar -xvzf ImageMagick.tar.gz
 
+# run the original assemble script
 /usr/libexec/s2i/assemble
