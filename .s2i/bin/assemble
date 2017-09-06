@@ -53,9 +53,8 @@ if [ $rc -eq 0 ]; then
     wget http://www.sno.phy.queensu.ca/~phil/exiftool/Image-ExifTool-${APP_VERSION}.tar.gz
     tar -xzf Image-ExifTool-${APP_VERSION}.tar.gz
     cd Image-ExifTool-${APP_VERSION}
-    perl Makefile.PL --prefix=$HOME/vendor/
-    make install
-    cp -R lib/* $HOME/vendor/lib
+    cp exiftool $HOME/vendor/bin
+    cp -R lib $HOME/vendor/bin
 else
     echo "after failed assembling"
 fi
