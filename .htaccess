@@ -1,4 +1,2 @@
 php_value memory_limit 200M
-<Directory /opt/app-root/src/filestore>
-    Options -Indexes
-</Directory>
+Options -Indexes
