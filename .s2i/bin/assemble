@@ -23,31 +23,44 @@ if [ $rc -eq 0 ]; then
 
     # install ImageMagick
     echo "--> installing ImageMagick..."
+    cd $HOME
     wget https://www.imagemagick.org/download/ImageMagick.tar.gz
     tar -xzf ImageMagick.tar.gz
     cd ImageMagick-7.0.7-0
     ./configure --prefix=$HOME/vendor/
     make
     make install
+    cd $HOME
+    rm ImageMagick.tar.gz
+    rm -R ImageMagick-7.0.7-0
 
     # install Ghostscript
     echo "--> installing Ghostscript..."
+    cd $HOME
     wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs921/ghostscript-9.21.tar.gz
     tar -xzf ghostscript-9.21.tar.gz
     cd ghostscript-9.21
     ./configure --prefix=$HOME/vendor/
     make
     make install
+    cd $HOME
+    rm ghostscript-9.21.tar.gz
+    rm -R ghostscript-9.21
 
     # install FFmpeg
     echo "--> installing FFmpeg..."
+    cd $HOME
     wget http://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz
     tar -xf ffmpeg-release-64bit-static.tar.xz
     cd ffmpeg-3.3.3-64bit-static
     cp ffmpeg $HOME/vendor/bin
+    cd $HOME
+    rm ffmpeg-release-64bit-static.tar.xz
+    rm -R ffmpeg-3.3.3-64bit-static
 
     # install ExifTool
     echo "--> installing ExifTool..."
+    cd $HOME
     wget http://owl.phy.queensu.ca/~phil/exiftool/ver.txt
     APP_VERSION=$(cat ver.txt)
     wget http://www.sno.phy.queensu.ca/~phil/exiftool/Image-ExifTool-${APP_VERSION}.tar.gz
@@ -55,6 +68,10 @@ if [ $rc -eq 0 ]; then
     cd Image-ExifTool-${APP_VERSION}
     cp exiftool $HOME/vendor/bin
     cp -R lib $HOME/vendor/bin
+    cd $HOME
+    rm ver.txt
+    rm Image-ExifTool-${APP_VERSION}.tar.gz
+    rm -R Image-ExifTool-${APP_VERSION}
 else
     echo "after failed assembling"
 fi
